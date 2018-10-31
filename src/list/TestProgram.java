@@ -15,10 +15,11 @@ public class TestProgram {
         String name1 = "Samir";
         String name2 = "Ahmad";
         String name3 = "Walid";
-        List dsClass = new List();
+        ArrayList<String> dsClass = new ArrayList();
         dsClass.add(name1);
         dsClass.add(name2);
         dsClass.add(name3);
+        // dsClass.add(new Integer(17));
     }
 
 }

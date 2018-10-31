@@ -9,14 +9,14 @@ package list;
  *
  * @author Bilal
  */
-class List {
+class ArrayList<SpecificType> {
 
-    private Object[] items = new Object[0];
+    private SpecificType[] items = (SpecificType[]) new Object[0];
 
-    void add(Object newItem) {
+    void add(SpecificType newItem) {
         // 1- create an array that is one item bigger than the current array
-        final Object[] oldItems = items;
-        final Object[] newItems = new Object[oldItems.length + 1];
+        final SpecificType[] oldItems = items;
+        final SpecificType[] newItems = (SpecificType[]) new Object[oldItems.length + 1];
 
         // 2- copy previous elements in their right order
         for (int i = 0; i < oldItems.length; i++) {
@@ -28,6 +28,24 @@ class List {
 
         // 4- replace the old array by the new one
         items = newItems;
+    }
+
+    SpecificType get(int index) {
+        return items[index];
+    }
+
+    int size() {
+        return this.items.length;
+    }
+
+    // checks whether the list is empty
+    boolean isEmpty() {
+        final boolean sizeIsZero = size() == 0;
+        return sizeIsZero;
+        // if(size() == 0)
+        //   return true;
+        // else
+        // return false;
     }
 
 }

@@ -9,11 +9,11 @@ package list;
  *
  * @author Bilal
  */
-class ArrayList<SpecificType> {
+class ArrayList<SpecificType> implements List<SpecificType> {
 
     private SpecificType[] items = (SpecificType[]) new Object[0];
 
-    void add(SpecificType newItem) {
+    public void add(SpecificType newItem) {
         // 1- create an array that is one item bigger than the current array
         final SpecificType[] oldItems = items;
         final SpecificType[] newItems = (SpecificType[]) new Object[oldItems.length + 1];
@@ -30,11 +30,11 @@ class ArrayList<SpecificType> {
         items = newItems;
     }
 
-    SpecificType get(int index) {
+    public SpecificType get(int index) {
         return items[index];
     }
 
-    int size() {
+    public int size() {
         return this.items.length;
     }
 

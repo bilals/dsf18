@@ -15,11 +15,13 @@ public class TestProgram {
         String name1 = "Samir";
         String name2 = "Ahmad";
         String name3 = "Walid";
-        ArrayList<String> dsClass = new ArrayList();
+        List<String> dsClass = new ArrayList();
+//        List<String> dsClass = new LinkedList<>();
         dsClass.add(name1);
         dsClass.add(name2);
         dsClass.add(name3);
-        // dsClass.add(new Integer(17));
+        System.out.println("2nd item is " + dsClass.get(1));
+        System.out.println("There are " + dsClass.size() + " items");
     }
 
 }

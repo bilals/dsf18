@@ -70,8 +70,31 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return head == null;
+    }
+
+    @Override
+    public T remove(int index) {
+        // TODO Make sure index is legal
+
+        if (index == 0) {
+            final T removedItem = head.item;
+            head = head.next;
+            return removedItem;
+        } else {
+            // index >= 1
+            Node<T> parentNode = head;
+            Node<T> currentNode = head.next;
+            int currentIndex = 1;
+            while (currentIndex < index) {
+                parentNode = currentNode;
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+            parentNode.next = currentNode.next;
+            return currentNode.item;
+        }
     }
 
     // Inner Class

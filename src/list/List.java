@@ -17,4 +17,8 @@ interface List<T> {
 
     public int size();
 
+    public boolean isEmpty();
+
+    public T remove(int index);
+
 }

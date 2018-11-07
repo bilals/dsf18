@@ -22,6 +22,6 @@ public class TestProgram {
         dsClass.add(name3);
         System.out.println("2nd item is " + dsClass.get(1));
         System.out.println("There are " + dsClass.size() + " items");
+        dsClass.remove(1);
     }
-
 }

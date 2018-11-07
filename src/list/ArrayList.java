@@ -39,13 +39,37 @@ class ArrayList<SpecificType> implements List<SpecificType> {
     }
 
     // checks whether the list is empty
-    boolean isEmpty() {
+    public boolean isEmpty() {
         final boolean sizeIsZero = size() == 0;
         return sizeIsZero;
         // if(size() == 0)
         //   return true;
         // else
         // return false;
+    }
+
+    @Override
+    public SpecificType remove(int index) {
+        // TODO Handle the OutOfBoundException
+
+        // 1- create a new array that is 1 item smaller
+        SpecificType[] newItems = (SpecificType[]) new Object[items.length - 1];
+
+        for (int i = 0; i < items.length; i++) {
+            if (i < index) {
+                // 2- copy all the item up until index-1 from old to same position in new
+                newItems[i] = items[i];
+            }
+            if (i > index) {
+                // 3- copy all items from inex+1 up to size-1 from old to one position ahead in the new
+                newItems[i - 1] = items[i];
+            }
+        }
+        SpecificType removedItem = items[index];
+        // 4- replace the old array by the new one
+        items = newItems;
+        // 5- return the removed item
+        return removedItem;
     }
 
 }

@@ -11,6 +11,8 @@ package list;
  */
 interface List<T> {
 
+    public boolean contains(T item);
+
     public void add(T item);
 
     public T get(int index);

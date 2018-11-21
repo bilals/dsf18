@@ -104,4 +104,24 @@ public class LinkedList<T> implements List<T> {
         Node<T> next;
     }
 
+    @Override
+    public boolean contains(T item) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int nbOccurrences(T item) {
+        if (head == null) {
+            return 0;
+        } else {
+            Node<T> currentNode = head;
+            int nbOccurrences = 0;
+            while (currentNode != null) {
+                if (currentNode.item.equals(item)) {
+                    nbOccurrences++;
+                }
+                currentNode = currentNode.next;
+            }
+            return nbOccurrences;
+        }
+    }
 }

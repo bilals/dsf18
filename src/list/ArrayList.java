@@ -9,14 +9,14 @@ package list;
  *
  * @author Bilal
  */
-class ArrayList<SpecificType> implements List<SpecificType> {
+class ArrayList<T> implements List<T> {
 
-    private SpecificType[] items = (SpecificType[]) new Object[0];
+    private T[] items = (T[]) new Object[0];
 
-    public void add(SpecificType newItem) {
+    public void add(T newItem) {
         // 1- create an array that is one item bigger than the current array
-        final SpecificType[] oldItems = items;
-        final SpecificType[] newItems = (SpecificType[]) new Object[oldItems.length + 1];
+        final T[] oldItems = items;
+        final T[] newItems = (T[]) new Object[oldItems.length + 1];
 
         // 2- copy previous elements in their right order
         for (int i = 0; i < oldItems.length; i++) {
@@ -30,7 +30,7 @@ class ArrayList<SpecificType> implements List<SpecificType> {
         items = newItems;
     }
 
-    public SpecificType get(int index) {
+    public T get(int index) {
         return items[index];
     }
 
@@ -49,11 +49,11 @@ class ArrayList<SpecificType> implements List<SpecificType> {
     }
 
     @Override
-    public SpecificType remove(int index) {
+    public T remove(int index) {
         // TODO Handle the OutOfBoundException
 
         // 1- create a new array that is 1 item smaller
-        SpecificType[] newItems = (SpecificType[]) new Object[items.length - 1];
+        T[] newItems = (T[]) new Object[items.length - 1];
 
         for (int i = 0; i < items.length; i++) {
             if (i < index) {
@@ -65,11 +65,66 @@ class ArrayList<SpecificType> implements List<SpecificType> {
                 newItems[i - 1] = items[i];
             }
         }
-        SpecificType removedItem = items[index];
+        T removedItem = items[index];
         // 4- replace the old array by the new one
         items = newItems;
         // 5- return the removed item
         return removedItem;
+    }
+
+    @Override
+    public boolean contains(T item) {
+//        boolean found = false;
+        for (T existingItem : items) {
+            // read it as: for each exisitingItem of type SpecificType in items
+            if (existingItem.equals(item)) {
+                return true;
+//                found = true;
+//                break;
+            }
+        }
+        // return found;
+        return false;
+    }
+
+    public ArrayList<T> merge(ArrayList<T> anotherList) {
+        final ArrayList<T> resultList = new ArrayList<>();
+        for (T item : items) {
+            resultList.add(item);
+        }
+        for (T item : anotherList.items) {
+            resultList.add(item);
+        }
+        return resultList;
+        // O(n^2) n=max(n1, n2)
+    }
+
+    public ArrayList<T> enhancedMerge(ArrayList<T> anotherList) {
+        final ArrayList<T> resultList = new ArrayList<>();
+        final int totalLength = this.items.length + anotherList.items.length;
+        resultList.items = (T[]) new Object[totalLength];
+        for (int i = 0; i < items.length; i++) {
+            resultList.items[i] = items[i];
+        }
+        int shift = this.items.length;
+        for (int i = 0; i < anotherList.items.length; i++) {
+            resultList.items[i + shift] = anotherList.items[i];
+        }
+        return resultList;
+        // O(n) n=max(n1, n2)
+    }
+
+    public ArrayList<T> intersect(ArrayList<T> anotherList) {
+        final ArrayList<T> resultList = new ArrayList<>();
+        for (T item : items) {
+            if (anotherList.contains(item)) {
+                // && ! resultList.contains(item)
+                // to not add the same intersection item twice
+                resultList.add(item);
+                break; // adds each item only once (not really)
+            }
+        }
+        return resultList;
     }
 
 }

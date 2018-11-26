@@ -22,7 +22,7 @@ public class TestProgram {
         dsClass.add(name3);
         System.out.println("2nd item is " + dsClass.get(1));
         System.out.println("There are " + dsClass.size() + " items");
-        dsClass.remove(1);
+        dsClass.remove(-1);
         System.out.println("After 2nd item removal:");
         System.out.println("2nd item is " + dsClass.get(1));
         System.out.println("There are " + dsClass.size() + " items");

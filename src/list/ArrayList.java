@@ -31,6 +31,9 @@ class ArrayList<T> implements List<T> {
     }
 
     public T get(int index) {
+        if (index >= size() || index < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         return items[index];
     }
 
@@ -50,7 +53,9 @@ class ArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        // TODO Handle the OutOfBoundException
+        if (index >= size() || index < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
 
         // 1- create a new array that is 1 item smaller
         T[] newItems = (T[]) new Object[items.length - 1];

@@ -21,6 +21,6 @@ interface List<T> {
 
     public boolean isEmpty();
 
-    public T remove(int index);
+    public T remove(int index) throws ArrayIndexOutOfBoundsException;
 
 }

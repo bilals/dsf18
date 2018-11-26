@@ -36,8 +36,7 @@ public class LinkedList<T> implements List<T> {
     public T get(int position) {
         if (position < 0 || position >= size()) // Already n iterations!
         {
-            return null;
-            // Not Elegant! Solution After Midterm with Exceptions
+            throw new ArrayIndexOutOfBoundsException();
         } else {
             // if(head == null) is equivalent to position >= size()
             Node<T> currentNode = head;
@@ -76,7 +75,9 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        // TODO Make sure index is legal
+        if (index >= size() || index < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
 
         if (index == 0) {
             final T removedItem = head.item;

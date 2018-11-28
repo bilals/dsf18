@@ -9,7 +9,7 @@ package list;
  *
  * @author Bilal
  */
-interface List<T> {
+public interface List<T> {
 
     public boolean contains(T item);
 

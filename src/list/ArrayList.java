@@ -9,7 +9,7 @@ package list;
  *
  * @author Bilal
  */
-class ArrayList<T> implements List<T> {
+public class ArrayList<T> implements List<T> {
 
     private T[] items = (T[]) new Object[0];
 

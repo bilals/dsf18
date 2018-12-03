@@ -5,29 +5,40 @@
  */
 package queue;
 
+import list.ArrayList;
+import list.List;
+
 /**
  *
  * @author Bilal
  */
 public class Queue<T> {
 
+    List<T> items = new ArrayList();
+
     int size() {
-        throw new UnsupportedOperationException("To be implemented as a homework ;)");
+        return items.size();
     }
 
     boolean isEmpty() {
-        throw new UnsupportedOperationException("To be implemented as a homework ;)");
+        return items.isEmpty();
     }
 
     void enqueue(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        items.add(element);
     }
 
     T dequeue() {
-        throw new UnsupportedOperationException("To be implemented as a homework ;)");
+        if (isEmpty()) {
+            throw new IllegalQueueOperationException();
+        }
+        return items.remove(0);
     }
 
     T peek() {
-        throw new UnsupportedOperationException("To be implemented as a homework ;)");
+        if (isEmpty()) {
+            throw new IllegalQueueOperationException();
+        }
+        return items.get(0);
     }
 }

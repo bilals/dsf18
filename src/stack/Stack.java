@@ -14,7 +14,7 @@ import list.List;
  */
 public class Stack<T> {
 
-    List<T> elements = new ArrayList<>();
+    final List<T> elements = new ArrayList<>();
 
     public Stack() {
     }
@@ -43,6 +43,38 @@ public class Stack<T> {
 
     void push(T element) {
         elements.add(element);
+    }
+
+    Stack<T> reverseCopy() {
+        Stack<T> reverseCopyStack = new Stack<>();
+        Stack<T> backUpReverseCopyStack = new Stack<>();
+        while (!this.isEmpty()) {
+            final T top = this.pop();
+            reverseCopyStack.push(top);
+            backUpReverseCopyStack.push(top);
+        }
+        while (!backUpReverseCopyStack.isEmpty()) {
+            this.push(backUpReverseCopyStack.pop());
+        }
+        return reverseCopyStack;
+    }
+
+    public Stack<T> copy() {
+        return this.reverseCopy().reverseCopy();
+    }
+
+    public void display() {
+        display(this);
+    }
+
+    private void display(Stack<T> stack) {
+        if (stack.isEmpty()) {
+            return;
+        }
+        final T top = stack.pop();
+        System.out.println(top);
+        display(stack);
+        stack.push(top);
     }
 
 }

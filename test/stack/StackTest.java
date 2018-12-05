@@ -56,4 +56,47 @@ public class StackTest {
         assertTrue("peek returns the top elt of the stack", top.equals(firstElt));
         assertTrue("After calling peek on a stack size remains intact", stack.size() == 1);
     }
+
+    @Test
+    public void testStackReverseCopy() {
+        final Stack<Object> stack = new Stack();
+        Stack<Object> stackReverseCopy = stack.reverseCopy();
+        assertTrue("A reverse copy of an empty stack must be empty too", stackReverseCopy.isEmpty());
+        assertTrue("A reverse copy of an empty stack must have a different reference", stack != stackReverseCopy);
+
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+
+        stackReverseCopy = stack.reverseCopy();
+        assertTrue("A reverse copy of a stack has the same size", stackReverseCopy.size() == 3);
+        assertTrue("A reverse copy of a stack has the elements in the reverse orde",
+                stackReverseCopy.pop().equals("1"));
+        assertTrue("A reverse copy of a stack has the elements in the reverse orde",
+                stackReverseCopy.pop().equals("2"));
+        assertTrue("A reverse copy of a stack has the elements in the reverse orde",
+                stackReverseCopy.pop().equals("3"));
+    }
+
+    @Test
+    public void testStackCopy() {
+        final Stack<Object> stack = new Stack();
+        Stack<Object> stackCopy = stack.copy();
+        assertTrue("A copy of an empty stack must be empty too", stackCopy.isEmpty());
+        assertTrue("A copy of an empty stack must have a different reference", stack != stackCopy);
+
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+
+        // stack.display();
+        stackCopy = stack.copy();
+        assertTrue("A copy of a stack has the same size", stackCopy.size() == 3);
+        assertTrue("A copy of a stack has the elements in the same orde",
+                stackCopy.pop().equals("3"));
+        assertTrue("A copy of a stack has the elements in the same orde",
+                stackCopy.pop().equals("2"));
+        assertTrue("A copy of a stack has the elements in the same orde",
+                stackCopy.pop().equals("1"));
+    }
 }

@@ -53,10 +53,14 @@ public class Stack<T> {
             reverseCopyStack.push(top);
             backUpReverseCopyStack.push(top);
         }
-        while (!backUpReverseCopyStack.isEmpty()) {
-            this.push(backUpReverseCopyStack.pop());
-        }
+        restoreItemsFrom(backUpReverseCopyStack);
         return reverseCopyStack;
+    }
+
+    private void restoreItemsFrom(Stack<T> anotherStack) {
+        while (!anotherStack.isEmpty()) {
+            this.push(anotherStack.pop());
+        }
     }
 
     public Stack<T> copy() {
@@ -75,6 +79,58 @@ public class Stack<T> {
         System.out.println(top);
         display(stack);
         stack.push(top);
+    }
+
+    public int indexOf(T item) {
+        for (int i = 0; i < elements.size(); i++) {
+            if (elements.get(i).equals(item)) {
+                return elements.size() - i;
+            }
+        }
+        return -1;
+    }
+
+    public int indexOfWithPnP(T item) {
+        Stack<T> tmp = new Stack<>();
+        int counter = 1;
+        while (!this.isEmpty()) {
+            final T top = this.pop();
+            tmp.push(top);
+            if (top.equals(item)) {
+                restoreItemsFrom(tmp);
+                return counter;
+            } else {
+                counter++;
+            }
+        }
+        restoreItemsFrom(tmp);
+        return -1;
+    }
+
+    public int indexOfWithPnPnR(T item) {
+        return indexOfWithPnPnR(item, 1);
+    }
+
+    private int indexOfWithPnPnR(T item, int level) {
+        System.out.println("Checking " + item
+                + " at level " + level);
+        display();
+        if (this.isEmpty()) {
+            return -1;
+        }
+        int foundIndex = 0;
+        final T top = this.pop();
+        System.out.println("Popped " + top);
+        if (top.equals(item)) {
+            foundIndex = level;
+        } else {
+            foundIndex = indexOfWithPnPnR(item, level + 1);
+        }
+        // restore the elements
+        this.push(top);
+        System.out.println("Pushed " + top);
+        System.out.println("Found Index is " + foundIndex);
+        return foundIndex;
     }
 
 }

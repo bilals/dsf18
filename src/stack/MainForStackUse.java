@@ -14,6 +14,17 @@ import java.util.Scanner;
 public class MainForStackUse {
 
     public static void main(String[] args) {
+        //checkArithmeticExpression();
+        Stack<String> cds = new Stack<>();
+        cds.push("Windows");
+        final String wael_Kfoury_CD = "Wael Kfoury";
+        cds.push(wael_Kfoury_CD);
+        cds.push("Office");
+        //cds.indexOfWithPnPnR("Not Found");
+        cds.indexOfWithPnPnR(wael_Kfoury_CD);
+    }
+
+    private static void checkArithmeticExpression() {
         Scanner inFromKeyboard = new Scanner(System.in);
         System.out.println("Enter an arithmetic expression:");
         final String givenString = inFromKeyboard.nextLine();

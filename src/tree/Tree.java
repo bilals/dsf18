@@ -5,6 +5,9 @@
  */
 package tree;
 
+import list.ArrayList;
+import list.List;
+
 /**
  *
  * @author Bilal
@@ -18,11 +21,40 @@ public class Tree<T> {
     }
 
     int size() {
-        return 0;
+        if (root == null) {
+            return 0;
+        } else {
+            //return getNbNodes(root);
+            return root.getNbNodes();
+        }
+    }
+
+    public boolean contains(T item) {
+        if (root == null) {
+            return false;
+        } else {
+            return root.containsInSelfOrAnySuccessor(item);
+        }
+    }
+
+    public List<TreeNode<T>> getPathTo(T item) {
+        if (root == null) {
+            final ArrayList<TreeNode<T>> path = new ArrayList<>();
+            return path;
+        } else {
+            return root.getPathTo(item);
+        }
     }
 
     void display() {
         root.display(0);
     }
 
+//    private int getNbNodes(TreeNode<T> node) {
+//        int nbChildNodes = 0;
+//        for (int i = 0; i < node.children.size(); i++) {
+//            nbChildNodes += getNbNodes(node.children.get(i));
+//        }
+//        return 1 + nbChildNodes;
+//    }
 }

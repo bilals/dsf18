@@ -7,6 +7,7 @@ package tree;
 
 import list.ArrayList;
 import list.List;
+import queue.Queue;
 
 /**
  *
@@ -75,6 +76,28 @@ public class TreeNode<T> {
                 }
             }
             return new ArrayList<>();
+        }
+    }
+
+    int getSubTreeDepth() {
+        int depth = 1;
+        int maxDepthChildren = 0;
+        for (int i = 0; i < children.size(); i++) {
+            final int childSubTreeDepth = children.get(i).getSubTreeDepth();
+            maxDepthChildren = Math.max(maxDepthChildren, childSubTreeDepth);
+        }
+        return depth + maxDepthChildren;
+    }
+
+    void displayByLevel() {
+        queue.Queue<TreeNode<T>> nodesQueue = new Queue<>();
+        nodesQueue.enqueue(this);
+        while (nodesQueue.isEmpty() == false) {
+            TreeNode<T> first = nodesQueue.dequeue();
+            System.out.print(first.item + " ");
+            for (int i = 0; i < first.children.size(); i++) {
+                nodesQueue.enqueue(first.children.get(i));
+            }
         }
     }
 

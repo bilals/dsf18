@@ -38,6 +38,9 @@ public class DriverProgram {
         System.out.println("The company "
                 + (employeeIsFound ? "has an" : "has no")
                 + " employee called " + employeeToFind);
+
+        System.out.println("The company has an hirerachy of depth " + companyHirerachy.depth());
+        companyHirerachy.displayByLevel();
     }
 
 }

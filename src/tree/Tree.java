@@ -57,4 +57,17 @@ public class Tree<T> {
 //        }
 //        return 1 + nbChildNodes;
 //    }
+    int depth() {
+        if (root == null) {
+            return 0;
+        } else {
+            return root.getSubTreeDepth();
+        }
+    }
+
+    void displayByLevel() {
+        if (root != null) {
+            root.displayByLevel();
+        }
+    }
 }

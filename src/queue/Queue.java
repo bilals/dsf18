@@ -20,15 +20,15 @@ public class Queue<T> {
         return items.size();
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return items.isEmpty();
     }
 
-    void enqueue(T element) {
+    public void enqueue(T element) {
         items.add(element);
     }
 
-    T dequeue() {
+    public T dequeue() {
         if (isEmpty()) {
             throw new IllegalQueueOperationException();
         }
